@@ -459,8 +459,20 @@ function scrollToComprar(){
     el.style.boxShadow='0 0 0 3px rgba(194,24,91,0.4)';
     setTimeout(function(){el.style.boxShadow='none';},1200);
   }
-  fbq('track','AddToCart');
 }
+
+// Script para adicionar UTMs aos links de compra
+(function() {
+  var params = window.location.search;
+  if (params) {
+    var links = document.querySelectorAll('a[href*="seguropagamentos.com.br"]');
+    links.forEach(function(link) {
+      var href = link.getAttribute('href');
+      var separator = href.indexOf('?') > -1 ? '&' : '?';
+      link.setAttribute('href', href + separator + params.substring(1));
+    });
+  }
+})();
 </script>
 
 </body></html>
