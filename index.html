@@ -151,6 +151,25 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ch
 .btn-bottom { flex:1.6; padding:13px 16px; background:var(--rose); color:#fff; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; text-align:center; border-radius:2px; display:block; border:none; cursor:pointer; }
 .spacer { height:88px; }
 
+/* Kit Options Section */
+.kit-options-sec { background:var(--cream); padding:30px 20px; }
+.kit-options-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:600; color:var(--charcoal); text-align:center; margin-bottom:6px; }
+.kit-options-sub { font-size:13px; color:var(--muted); text-align:center; margin-bottom:24px; }
+.kit-card { background:var(--white); border-radius:10px; padding:16px; margin-bottom:14px; box-shadow:0 2px 12px rgba(42,31,31,0.08); position:relative; }
+.kit-card-badge { position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:var(--charcoal); color:#fff; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:5px 14px; border-radius:20px; white-space:nowrap; display:flex; align-items:center; gap:5px; }
+.kit-card-badge.best { background:var(--rose); }
+.kit-card-inner { display:flex; align-items:center; gap:14px; }
+.kit-card-img { width:70px; height:90px; object-fit:contain; border-radius:6px; background:var(--pink-bg); flex-shrink:0; }
+.kit-card-info { flex:1; }
+.kit-card-name { font-size:15px; font-weight:600; color:var(--charcoal); margin-bottom:3px; }
+.kit-card-desc { font-size:12px; color:var(--muted); margin-bottom:8px; line-height:1.4; }
+.kit-card-prices { display:flex; align-items:center; gap:8px; margin-bottom:0; }
+.kit-card-old { font-size:12px; color:var(--muted); text-decoration:line-through; }
+.kit-card-discount { font-size:11px; font-weight:700; color:var(--white); background:var(--charcoal); padding:2px 6px; border-radius:3px; }
+.kit-card-price { font-size:22px; font-weight:700; color:var(--rose); }
+.kit-card-btn { display:block; width:100%; padding:14px 16px; background:linear-gradient(135deg,var(--rose-dark),var(--rose)); color:#fff; font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; text-decoration:none; text-align:center; border-radius:6px; margin-top:14px; display:flex; align-items:center; justify-content:center; gap:8px; }
+.kit-card-btn svg { width:18px; height:18px; }
+
 /* Exit Popup */
 .exit-popup-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; display:none; align-items:center; justify-content:center; padding:20px; }
 .exit-popup-overlay.active { display:flex; }
@@ -217,6 +236,74 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ch
   <div class="trust-item"><span class="trust-icon">↩️</span><span class="trust-label">7 Dias<br>Garantia</span></div>
   <div class="trust-item"><span class="trust-icon">📦</span><span class="trust-label">Envio<br>Rastreado</span></div>
 </div>
+
+<!-- SEÇÃO ESCOLHA SEU KIT -->
+<section class="kit-options-sec">
+  <h2 class="kit-options-title">Escolha seu Kit Ideal</h2>
+  <p class="kit-options-sub">Frete grátis para todo o Brasil</p>
+
+  <!-- Kit 1 - Unitário -->
+  <div class="kit-card">
+    <div class="kit-card-inner">
+      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-RWKlinAHOTNAREMvzp1NPkawW90hEN.png" alt="Body Splash My Sweet Delight" class="kit-card-img" style="background:#fff0f5;">
+      <div class="kit-card-info">
+        <div class="kit-card-name">Body Splash My Sweet Delight</div>
+        <div class="kit-card-desc">Desodorante Colônia 200ml</div>
+        <div class="kit-card-prices">
+          <span class="kit-card-old">R$ 59,90</span>
+          <span class="kit-card-discount">28% OFF</span>
+        </div>
+        <div class="kit-card-price">R$ 42,90</div>
+      </div>
+    </div>
+    <a href="https://seguropagamentos.com.br/bodysplash-beauty" class="kit-card-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Comprar agora
+    </a>
+  </div>
+
+  <!-- Kit 2 - Mais Vendido -->
+  <div class="kit-card" style="margin-top:24px;">
+    <div class="kit-card-badge">🔥 MAIS VENDIDO</div>
+    <div class="kit-card-inner">
+      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-RWKlinAHOTNAREMvzp1NPkawW90hEN.png" alt="Kit 2 Body Splash" class="kit-card-img" style="background:#fff0f5;">
+      <div class="kit-card-info">
+        <div class="kit-card-name">Kit 2 Body Splash</div>
+        <div class="kit-card-desc">Desodorante Colônia 200ml cada</div>
+        <div class="kit-card-prices">
+          <span class="kit-card-old">R$ 99,80</span>
+          <span class="kit-card-discount">41% OFF</span>
+        </div>
+        <div class="kit-card-price">R$ 62,90</div>
+      </div>
+    </div>
+    <a href="https://seguropagamentos.com.br/bodysplash-beauty" class="kit-card-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Comprar agora
+    </a>
+  </div>
+
+  <!-- Kit 3 - Melhor Custo-Benefício -->
+  <div class="kit-card" style="margin-top:24px;">
+    <div class="kit-card-badge best">✨ MELHOR CUSTO-BENEFÍCIO</div>
+    <div class="kit-card-inner">
+      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-RWKlinAHOTNAREMvzp1NPkawW90hEN.png" alt="Trio Favoritos" class="kit-card-img" style="background:#fff0f5;">
+      <div class="kit-card-info">
+        <div class="kit-card-name">Trio Favoritos</div>
+        <div class="kit-card-desc">Good Graces, Very Sexy e My Sweet Delight</div>
+        <div class="kit-card-prices">
+          <span class="kit-card-old">R$ 149,70</span>
+          <span class="kit-card-discount">47% OFF</span>
+        </div>
+        <div class="kit-card-price">R$ 84,90</div>
+      </div>
+    </div>
+    <a href="https://seguropagamentos.com.br/bodysplash-beauty" class="kit-card-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Comprar agora
+    </a>
+  </div>
+</section>
 
 <div class="sec-head">
   <div class="sec-label">O que vem no Kit</div>
