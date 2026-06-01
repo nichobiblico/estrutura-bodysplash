@@ -206,7 +206,7 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 
 <div class="urgency-bar">
   <span class="urgency-txt"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Oferta relampago expira em</span>
-  <span class="urgency-timer" id="timer">14:59</span>
+  <span class="urgency-timer" id="timer">23:00</span>
 </div>
 
 <div class="hero-img-wrap">
@@ -520,10 +520,10 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 
 <script defer>
 (function(){
-  let secs = 14*60+59;
+  let secs = 23*60+0;
   const el = document.getElementById('timer');
   setInterval(function(){
-    if(secs<=0) secs=14*60+59;
+    if(secs<=0) secs=23*60+0;
     secs--;
     const m=String(Math.floor(secs/60)).padStart(2,'0');
     const s=String(secs%60).padStart(2,'0');
