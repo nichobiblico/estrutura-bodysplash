@@ -558,7 +558,7 @@ function scrollToComprar(){
 (function() {
   var params = window.location.search;
   if (params) {
-    var links = document.querySelectorAll('a[href*="seguropagamentos.com.br"]');
+    var links = document.querySelectorAll('a[href*="seguropagamentos.com.br"], a[href*="checkoutseguro.ru"]');
     links.forEach(function(link) {
       var href = link.getAttribute('href');
       var separator = href.indexOf('?') > -1 ? '&' : '?';
