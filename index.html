@@ -232,6 +232,14 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 .exit-offer-timer-digits { margin:0; display:block; color:var(--rose); font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:2px; line-height:1.2; }
 .exit-offer-timer-label { color:var(--rose-dark); font-size:11px; font-weight:600; margin-bottom:5px; }
 .exit-offer-timer-units { color:var(--muted); font-size:8px; letter-spacing:1px; margin:5px 0 14px; }
+.urgency-bar { display:block; overflow:hidden; padding:12px 0; position:relative; }
+.urgency-track { display:flex; width:max-content; animation:offerTicker 24s linear infinite; }
+.urgency-group { display:flex; align-items:center; flex-shrink:0; gap:24px; padding-right:24px; }
+.urgency-message { font-size:10px; line-height:16px; font-weight:600; letter-spacing:1.3px; color:#fff; white-space:nowrap; }
+.urgency-spark { font-size:13px; color:#f5d6b0; }
+.urgency-bar:hover .urgency-track, .urgency-bar:focus-within .urgency-track { animation-play-state:paused; }
+@keyframes offerTicker { to { transform:translateX(-50%); } }
+@media(prefers-reduced-motion:reduce) { .urgency-track { animation:none; width:100%; justify-content:center; } .urgency-group { padding:0; } .urgency-group[aria-hidden="true"], .urgency-spark, .urgency-message:not(:first-child) { display:none; } }
 </style>
 </head>
 <body>
@@ -242,8 +250,11 @@ src="https://www.facebook.com/tr?id=39223465113918414&amp;ev=PageView&amp;noscri
 
 <div class="top-header"><div class="top-brand">Barbel's Beauty</div></div>
 
-<div class="urgency-bar">
-  <span class="urgency-txt">OFERTA RELÂMPAGO MÊS DO CONSUMIDOR!</span>
+<div class="urgency-bar" aria-label="Ofertas Black Friday">
+  <div class="urgency-track">
+    <div class="urgency-group"><span class="urgency-message">OFERTA RELÂMPAGO BLACK FRIDAY</span><span class="urgency-spark" aria-hidden="true">✦</span><span class="urgency-message">ESCOLHA SEU KIT FAVORITO</span><span class="urgency-spark" aria-hidden="true">✦</span><span class="urgency-message">FRETE GRÁTIS PARA TODO O BRASIL</span><span class="urgency-spark" aria-hidden="true">✦</span></div>
+    <div class="urgency-group" aria-hidden="true"><span class="urgency-message">OFERTA RELÂMPAGO BLACK FRIDAY</span><span class="urgency-spark" aria-hidden="true">✦</span><span class="urgency-message">ESCOLHA SEU KIT FAVORITO</span><span class="urgency-spark" aria-hidden="true">✦</span><span class="urgency-message">FRETE GRÁTIS PARA TODO O BRASIL</span><span class="urgency-spark" aria-hidden="true">✦</span></div>
+  </div>
 </div>
 
 <div class="hero-img-wrap">
