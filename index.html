@@ -240,6 +240,7 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 .urgency-bar:hover .urgency-track, .urgency-bar:focus-within .urgency-track { animation-play-state:paused; }
 @keyframes offerTicker { to { transform:translateX(-50%); } }
 @media(prefers-reduced-motion:reduce) { .urgency-track { animation:none; width:100%; justify-content:center; } .urgency-group { padding:0; } .urgency-group[aria-hidden="true"], .urgency-spark, .urgency-message:not(:first-child) { display:none; } }
+.bottom-bar.kits-visible { display:none; }
 </style>
 </head>
 <body>
@@ -418,11 +419,6 @@ src="https://www.facebook.com/tr?id=39223465113918414&amp;ev=PageView&amp;noscri
   </div>
   <a href="https://checkout.comprasegurashop.top/checkout/kit-3" class="btn-promo">Quero meu Kit Agora →</a>
 </section>
-
-<div class="selos-wrap">
-  <div class="selos-title">Certificações & Qualidade</div>
-  <img src="/assets/selos.jpg" class="selos-img" alt="Cruelty Free · Dermatologicamente Testado" loading="lazy" decoding="async">
-</div>
 
 <section class="frete-sec">
   <div class="sec-label" style="font-size:20px;margin-bottom:14px;">Envio & Entrega</div>
@@ -720,6 +716,45 @@ document.addEventListener('DOMContentLoaded', function () {
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     }
   });
+});
+
+// Foco nas ofertas e barra fixa somente fora da seção dos kits.
+document.addEventListener('DOMContentLoaded', function () {
+  var kits = document.getElementById('comprar');
+  var bottomBar = document.querySelector('.bottom-bar');
+  if (!kits || !bottomBar) return;
+  function updateBar(visible) {
+    bottomBar.classList.toggle('kits-visible', visible);
+    bottomBar.setAttribute('aria-hidden', String(visible));
+  }
+  function checkVisibility() {
+    var rect = kits.getBoundingClientRect();
+    updateBar(rect.bottom > 0 && rect.top < window.innerHeight);
+  }
+  checkVisibility();
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      updateBar(entries[0].isIntersecting);
+    }, { threshold: 0 });
+    observer.observe(kits);
+  } else {
+    window.addEventListener('scroll', checkVisibility, { passive: true });
+    window.addEventListener('resize', checkVisibility);
+  }
+  var returnNavigation = performance.getEntriesByType('navigation')[0];
+  if (returnNavigation && returnNavigation.type === 'back_forward') return;
+  setTimeout(function () {
+    // Não deslocar a página por trás da oferta de saída nem interromper o checkout.
+    if (document.querySelector('.exit-popup-overlay.active') || document.visibilityState !== 'visible') return;
+    var rect = kits.getBoundingClientRect();
+    var viewport = window.innerHeight;
+    // Centralizar quando cabe; em telas menores, preservar o título e o primeiro kit.
+    var offset = rect.height <= viewport ? (viewport - rect.height) / 2 : 16;
+    window.scrollTo({
+      top: Math.max(0, window.scrollY + rect.top - offset),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+    });
+  }, 3000);
 });
 </script>
 
