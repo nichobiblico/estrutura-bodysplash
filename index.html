@@ -241,6 +241,15 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 @keyframes offerTicker { to { transform:translateX(-50%); } }
 @media(prefers-reduced-motion:reduce) { .urgency-track { animation:none; width:100%; justify-content:center; } .urgency-group { padding:0; } .urgency-group[aria-hidden="true"], .urgency-spark, .urgency-message:not(:first-child) { display:none; } }
 .bottom-bar.kits-visible { display:none; }
+@media (max-width:600px) {
+  .bottom-bar { padding:10px clamp(12px, 4vw, 20px) calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .bottom-inner { gap:clamp(8px, 3vw, 14px); }
+  .bottom-price { flex:0 1 42%; min-width:0; }
+  .bottom-price > div:first-child { font-size:clamp(10px, 2.8vw, 12px) !important; letter-spacing:0; }
+  .bottom-price-old { font-size:10px; }
+  .bottom-price-main { font-size:clamp(20px, 5.6vw, 24px); line-height:1.15; white-space:nowrap; }
+  .bottom-bar .btn-bottom { flex:1; min-width:0; min-height:44px; padding:11px 8px; font-size:clamp(10px, 2.8vw, 13px); letter-spacing:clamp(.4px, .2vw, 1px); display:flex; align-items:center; justify-content:center; white-space:nowrap; }
+}
 </style>
 </head>
 <body>
