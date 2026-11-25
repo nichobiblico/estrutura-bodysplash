@@ -15,27 +15,17 @@
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;
-n.push=n;
-n.loaded=!0;
-n.version='2.0';
-n.queue=[];
-t=b.createElement(e);
-t.async=!0;
-t.src=v;
-s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)
-}(window, document,'script',
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-
 fbq('init', '2137482030209138');
 fbq('track', 'PageView');
-// eventID único do ViewContent: o mesmo id vai para a API de Conversões (deduplicação).
-window.metaViewContentEventId = 'vc_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
-document.addEventListener('DOMContentLoaded', function () {
-  fbq('track', 'ViewContent', { content_name: 'Kit Body Splash', value: 43.84, currency: 'BRL' }, { eventID: window.metaViewContentEventId });
-}, { once: true });
 </script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2137482030209138&ev=PageView&noscript=1"
+/></noscript>
 <!-- End Meta Pixel Code -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -282,10 +272,6 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 </style>
 </head>
 <body>
-<noscript>
-<img height="1" width="1" style="display:none" alt=""
-src="https://www.facebook.com/tr?id=2137482030209138&amp;ev=PageView&amp;noscript=1">
-</noscript>
 
 <div class="top-header"><div class="top-brand">Barbel's Beauty</div></div>
 
@@ -648,51 +634,6 @@ function scrollToComprar(){
       link.setAttribute('href', href + separator + params.substring(1));
     });
   }
-})();
-
-// Meta: leva fbp e fbc para o checkout (o checkout fica em outro domínio e não enxerga os cookies daqui).
-(function () {
-  var checkoutHosts = ['checkout.comprasegurashop.top', 'pay.comprasegurashop.top', 'seguropagamentos.com.br', 'checkoutseguro.ru', 'compra-segura.icu', 'pagamentosimples.icu'];
-  function getCookie(name) {
-    var match = document.cookie.match('(?:^|; )' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^;]*)');
-    return match ? decodeURIComponent(match[1]) : '';
-  }
-  // Sem cookie _fbc mas com fbclid: monta fbc com o momento em que o visitante chegou.
-  var fbclid = new URLSearchParams(location.search).get('fbclid');
-  var fallbackFbc = fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : '';
-  document.addEventListener('click', function (event) {
-    var link = event.target.closest && event.target.closest('a[href]');
-    if (!link) return;
-    var url;
-    try { url = new URL(link.href, location.href); } catch (error) { return; }
-    if (checkoutHosts.indexOf(url.hostname) === -1) return;
-    var fbp = getCookie('_fbp');
-    var fbc = getCookie('_fbc') || fallbackFbc;
-    if (fbp) url.searchParams.set('fbp', fbp);
-    if (fbc) url.searchParams.set('fbc', fbc);
-    link.href = url.toString();
-  }, true);
-
-  // ViewContent no servidor (API de Conversões) com o MESMO eventID do pixel.
-  // Espera o pixel criar o cookie _fbp; uma falha aqui nunca afeta a página.
-  function sendServerViewContent() {
-    if (!window.metaViewContentEventId) return;
-    var payload = JSON.stringify({
-      eventName: 'ViewContent',
-      eventId: window.metaViewContentEventId,
-      value: 43.84,
-      url: location.href,
-      fbp: getCookie('_fbp') || undefined,
-      fbc: getCookie('_fbc') || fallbackFbc || undefined
-    });
-    try {
-      var blob = new Blob([payload], { type: 'application/json' });
-      if (!(navigator.sendBeacon && navigator.sendBeacon('/api/meta/event', blob))) {
-        fetch('/api/meta/event', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(function () {});
-      }
-    } catch (error) { /* rastreamento nunca quebra a página */ }
-  }
-  window.addEventListener('load', function () { setTimeout(sendServerViewContent, 1500); }, { once: true });
 })();
 
 // Oferta de saída: inicializar depois do HTML do diálogo.
