@@ -658,7 +658,8 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCountdown();
   setInterval(updateCountdown, 1000);
   var leavingForCheckout = false;
-  var returnKey = 'bodySplash:checkoutReturn:' + location.pathname + location.search;
+  // Só o caminho: a volta do checkout é reconhecida mesmo se as UTMs da URL mudarem.
+  var returnKey = 'bodySplash:checkoutReturn:' + location.pathname;
   document.addEventListener('click', function (event) {
     var link = event.target.closest && event.target.closest('a[href]');
     if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
@@ -718,9 +719,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (guard) { guard = false; show(); }
   });
   // Intenção de saída no computador: mouse indo para fechar a aba ou para a barra de endereço.
-  document.documentElement.addEventListener('mouseleave', function (event) {
+  // Conta quando o mouse sai da janela pelo topo; movimentos rápidos às vezes registram alguns px abaixo da borda.
+  document.addEventListener('mouseout', function (event) {
     if (!window.matchMedia('(pointer: fine)').matches) return;
-    if (event.clientY <= 0 && Date.now() - startedAt >= 5000) {
+    if (event.relatedTarget || event.toElement) return; // ainda dentro da página
+    if (event.clientY < 20 && Date.now() - startedAt >= 5000) {
       armed = true;
       show();
     }
