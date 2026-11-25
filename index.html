@@ -28,10 +28,12 @@ s.parentNode.insertBefore(t,s)
 }(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 
-fbq('init', '39223465113918414');
+fbq('init', '2137482030209138');
 fbq('track', 'PageView');
+// eventID único do ViewContent: o mesmo id vai para a API de Conversões (deduplicação).
+window.metaViewContentEventId = 'vc_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
 document.addEventListener('DOMContentLoaded', function () {
-  fbq('track', 'ViewContent');
+  fbq('track', 'ViewContent', { content_name: 'Kit Body Splash', value: 43.84, currency: 'BRL' }, { eventID: window.metaViewContentEventId });
 }, { once: true });
 </script>
 <!-- End Meta Pixel Code -->
@@ -233,6 +235,32 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 .exit-offer-timer-digits { margin:0; display:block; color:var(--rose); font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:2px; line-height:1.2; }
 .exit-offer-timer-label { color:var(--rose-dark); font-size:11px; font-weight:600; margin-bottom:5px; }
 .exit-offer-timer-units { color:var(--muted); font-size:8px; letter-spacing:1px; margin:5px 0 14px; }
+/* Kit Presente (oferta de saída) */
+.exit-popup.gift { padding:0 0 22px; overflow-x:hidden; max-width:370px; }
+.gift-ribbon { background:linear-gradient(135deg,var(--rose-dark),var(--rose)); color:#fff; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:11px 44px; display:flex; align-items:center; justify-content:center; gap:8px; }
+.gift-ribbon svg { width:15px; height:15px; flex:none; }
+.gift .exit-popup-close { top:7px; right:10px; background:rgba(255,255,255,.18); }
+.gift-body { padding:18px 22px 0; }
+.gift-eyebrow { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.gift .exit-popup-title { font-size:28px; line-height:1.15; margin-bottom:6px; }
+.gift .exit-popup-title em { font-style:italic; color:var(--rose); }
+.gift .exit-popup-subtitle { margin-bottom:10px; font-size:13px; color:var(--muted); }
+.gift-stage { position:relative; margin:2px auto 4px; width:min(270px,78vw); aspect-ratio:1/1; max-height:34vh; border-radius:50%; background:radial-gradient(circle,var(--pink-bg) 0%,var(--pink-bg) 55%,rgba(255,240,245,0) 70%); }
+@media (max-height:640px) { .gift-stage { max-height:28vh; } .gift .exit-popup-title { font-size:24px; } }
+.gift-stage img { width:100%; height:100%; object-fit:contain; display:block; mix-blend-mode:multiply; }
+.gift-tag { position:absolute; right:-6px; top:18px; background:var(--white); border:1px solid #f5dce5; color:var(--rose-dark); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:5px 9px; border-radius:20px; transform:rotate(6deg); box-shadow:0 4px 12px rgba(136,14,79,.12); }
+.gift-items { list-style:none; text-align:left; background:var(--white); border:1px solid #f5dce5; border-radius:10px; padding:10px 14px; margin:0 0 14px; }
+.gift-items li { display:flex; align-items:flex-start; gap:9px; font-size:12px; color:var(--charcoal); line-height:1.35; padding:5px 0; }
+.gift-items li + li { border-top:1px dashed #f5dce5; }
+.gift-items li span { color:var(--muted); display:block; font-size:11px; }
+.gift-items .dot { flex:none; width:8px; height:8px; border-radius:50%; margin-top:4px; background:var(--rose); }
+.gift-items .dot.lilac { background:#b0457e; }
+.gift-items .dot.gold { background:var(--gold); }
+.gift .exit-popup-price { margin-bottom:14px; }
+.gift-price-label { display:block; font-size:11px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+.gift .exit-popup-price-new { line-height:1.1; }
+.gift .exit-offer-timer-label { margin-top:14px; }
+.gift .exit-offer-timer-units { margin-bottom:0; }
 .urgency-bar { display:block; overflow:hidden; padding:12px 0; position:relative; }
 .urgency-track { display:flex; width:max-content; animation:offerTicker 24s linear infinite; }
 .urgency-group { display:flex; align-items:center; flex-shrink:0; gap:24px; padding-right:24px; }
@@ -256,7 +284,7 @@ body { font-family:'DM Sans','DM Sans Fallback',sans-serif; background:var(--cre
 <body>
 <noscript>
 <img height="1" width="1" style="display:none" alt=""
-src="https://www.facebook.com/tr?id=39223465113918414&amp;ev=PageView&amp;noscript=1">
+src="https://www.facebook.com/tr?id=2137482030209138&amp;ev=PageView&amp;noscript=1">
 </noscript>
 
 <div class="top-header"><div class="top-brand">Barbel's Beauty</div></div>
@@ -269,13 +297,13 @@ src="https://www.facebook.com/tr?id=39223465113918414&amp;ev=PageView&amp;noscri
 </div>
 
 <div class="hero-img-wrap">
-  <img src="/assets/hero.jpg" class="hero-img" alt="Kit 3 Body Splash Barbel's Beauty" fetchpriority="high" loading="eager" decoding="async">
+  <img src="/assets/hero-3-frascos.webp" class="hero-img" alt="Kit 3 Body Splash Barbel's Beauty" fetchpriority="high" loading="eager" decoding="async">
   <div class="hero-caption">Kit 3 <em>Body Splashes</em><br>Barbel's Beauty</div>
   <p class="hero-sub">Três fragrâncias sofisticadas, 200ml cada.<br>Hidratação, fixação e perfume irresistível.</p>
   <div class="av-row">
     <span class="stars">★★★★★</span>
     <span class="av-num">4,9</span>
-    <span class="av-count">· 847 avaliações</span>
+    <span class="av-count">· +17 mil avaliações</span>
   </div>
 </div>
 
@@ -448,7 +476,7 @@ src="https://www.facebook.com/tr?id=39223465113918414&amp;ev=PageView&amp;noscri
 
 <section class="reviews-sec">
   <div class="sec-label">O que dizem as clientes</div>
-  <p style="font-size:12px;color:var(--muted);margin-bottom:18px;">847 avaliações verificadas</p>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:18px;">+17 mil avaliações verificadas</p>
   <div class="reviews-header">
     <div class="reviews-score">
       <div class="reviews-big">4,9</div>
@@ -622,6 +650,51 @@ function scrollToComprar(){
   }
 })();
 
+// Meta: leva fbp e fbc para o checkout (o checkout fica em outro domínio e não enxerga os cookies daqui).
+(function () {
+  var checkoutHosts = ['checkout.comprasegurashop.top', 'pay.comprasegurashop.top', 'seguropagamentos.com.br', 'checkoutseguro.ru', 'compra-segura.icu', 'pagamentosimples.icu'];
+  function getCookie(name) {
+    var match = document.cookie.match('(?:^|; )' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^;]*)');
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+  // Sem cookie _fbc mas com fbclid: monta fbc com o momento em que o visitante chegou.
+  var fbclid = new URLSearchParams(location.search).get('fbclid');
+  var fallbackFbc = fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : '';
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest && event.target.closest('a[href]');
+    if (!link) return;
+    var url;
+    try { url = new URL(link.href, location.href); } catch (error) { return; }
+    if (checkoutHosts.indexOf(url.hostname) === -1) return;
+    var fbp = getCookie('_fbp');
+    var fbc = getCookie('_fbc') || fallbackFbc;
+    if (fbp) url.searchParams.set('fbp', fbp);
+    if (fbc) url.searchParams.set('fbc', fbc);
+    link.href = url.toString();
+  }, true);
+
+  // ViewContent no servidor (API de Conversões) com o MESMO eventID do pixel.
+  // Espera o pixel criar o cookie _fbp; uma falha aqui nunca afeta a página.
+  function sendServerViewContent() {
+    if (!window.metaViewContentEventId) return;
+    var payload = JSON.stringify({
+      eventName: 'ViewContent',
+      eventId: window.metaViewContentEventId,
+      value: 43.84,
+      url: location.href,
+      fbp: getCookie('_fbp') || undefined,
+      fbc: getCookie('_fbc') || fallbackFbc || undefined
+    });
+    try {
+      var blob = new Blob([payload], { type: 'application/json' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon('/api/meta/event', blob))) {
+        fetch('/api/meta/event', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(function () {});
+      }
+    } catch (error) { /* rastreamento nunca quebra a página */ }
+  }
+  window.addEventListener('load', function () { setTimeout(sendServerViewContent, 1500); }, { once: true });
+})();
+
 // Oferta de saída: inicializar depois do HTML do diálogo.
 document.addEventListener('DOMContentLoaded', function () {
   var popup = document.getElementById('exitPopup');
@@ -705,15 +778,13 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('popstate', function () {
     if (guard) { guard = false; show(); }
   });
+  // Intenção de saída no computador: mouse indo para fechar a aba ou para a barra de endereço.
   document.documentElement.addEventListener('mouseleave', function (event) {
-    if (event.clientY <= 0 && (armed || Date.now() - startedAt >= 2000)) {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    if (event.clientY <= 0 && Date.now() - startedAt >= 5000) {
       armed = true;
       show();
     }
-  });
-  // Ao alternar de aba, a oferta fica visível quando o visitante retorna.
-  document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'hidden' && armed && !leavingForCheckout) show();
   });
   document.getElementById('exitPopupClose').addEventListener('click', hide);
   popup.addEventListener('click', function (event) { if (event.target === popup) hide(); });
@@ -770,21 +841,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- Oferta de saída em desenvolvimento local -->
 <div class="exit-popup-overlay" id="exitPopup" aria-hidden="true">
-  <div class="exit-popup" role="dialog" aria-modal="true" aria-labelledby="exitPopupTitle" aria-describedby="exitPopupDescription">
-    <button class="exit-popup-close" id="exitPopupClose" type="button" aria-label="Fechar oferta">&times;</button>
-    <div class="exit-popup-badge">Uma oferta para você</div>
-    <div class="exit-offer-timer-label">Tempo restante da oferta especial</div>
-    <div class="exit-offer-timer-digits" id="exitOfferCountdown" role="timer" aria-label="Tempo restante da oferta especial">05 : 37 : 00</div>
-    <div class="exit-offer-timer-units" aria-hidden="true">HORAS &nbsp; · &nbsp; MINUTOS &nbsp; · &nbsp; SEGUNDOS</div>
-    <h3 class="exit-popup-title" id="exitPopupTitle">Seu trio favorito<br>por um preço especial</h3>
-    <img class="exit-popup-img" loading="lazy" decoding="async" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20tela%202026-05-29%20102145-UrrJTBAnjFjRBTzKE3f0BDHqr4OXFZ.png" alt="Kit com três Body Splashes: My Sweet Delight, Very Sexy e Roses">
-    <p class="exit-popup-subtitle" id="exitPopupDescription">3 Body Splashes de 200 ml para perfumar seus dias.</p>
-    <div class="exit-popup-price">
-      <span class="exit-popup-price-old">De R$ 43,84</span><br>
-      <span class="exit-popup-price-new">R$ 34,83</span>
-      <span class="exit-popup-saving">R$ 9,01 de desconto no kit completo</span>
+  <div class="exit-popup gift" role="dialog" aria-modal="true" aria-labelledby="exitPopupTitle" aria-describedby="exitPopupDescription">
+    <div class="gift-ribbon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+      Kit Presente
     </div>
-    <a href="https://pay.comprasegurashop.top/checkout/backredirect-body" class="btn-bottom exit-popup-btn" id="exitPopupBtn">Quero meu kit favorito</a>
+    <button class="exit-popup-close" id="exitPopupClose" type="button" aria-label="Fechar oferta">&times;</button>
+    <div class="gift-body">
+      <div class="gift-eyebrow">Antes de você ir…</div>
+      <h3 class="exit-popup-title" id="exitPopupTitle">Um presente <em>perfumado</em><br>esperando por você</h3>
+      <div class="gift-stage">
+        <img loading="lazy" decoding="async" src="assets/kit-presente-2-body-splash.png" alt="Kit presente com caixa e dois Body Splashes: Very Sexy e My Sweet Delight">
+      </div>
+      <p class="exit-popup-subtitle" id="exitPopupDescription">2 Body Splashes 200 ml + caixa presente</p>
+      <div class="exit-popup-price">
+        <span class="gift-price-label">Kit presente por apenas</span>
+        <span class="exit-popup-price-new">R$ 27,83</span>
+      </div>
+      <a href="https://pay.comprasegurashop.top/checkout/backredirect-body" class="btn-bottom exit-popup-btn" id="exitPopupBtn">Quero meu kit presente</a>
+      <div class="exit-offer-timer-label">Esta oferta expira em</div>
+      <div class="exit-offer-timer-digits" id="exitOfferCountdown" role="timer" aria-label="Tempo restante da oferta especial">05 : 37 : 00</div>
+      <div class="exit-offer-timer-units" aria-hidden="true">HORAS &nbsp; · &nbsp; MINUTOS &nbsp; · &nbsp; SEGUNDOS</div>
+    </div>
   </div>
 </div>
 
